@@ -6,7 +6,8 @@ Ext.define('TutorialApp.view.main.Main', {
         'Ext.window.MessageBox',
         'TutorialApp.view.main.MainController',
         'TutorialApp.view.main.MainModel',
-        'TutorialApp.view.main.List'
+        'TutorialApp.view.main.List',
+        'TutorialApp.view.product.List'
     ],
     controller: 'main',
     viewModel: 'main',
@@ -79,11 +80,11 @@ Ext.define('TutorialApp.view.main.Main', {
                 html: '{loremIpsum}'
             }
         }, {
-            title: 'Groups',
-            iconCls: 'fa-users',
-            bind: {
-                html: '{loremIpsum}'
-            }
+            title: 'Sản phẩm',
+            iconCls: 'fa-pie-chart',
+            items: [{
+                    xtype: 'productList'
+                }]            
         }, {
             title: 'Settings',
             iconCls: 'fa-cog',
