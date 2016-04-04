@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'TutorialApp' );
-$image-search-path: 'e:/xampp/htdocs/TutorialApp/build/development/TutorialApp/resources';
+$image-search-path: '/Library/WebServer/Documents/giocha/build/development/TutorialApp/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractcontainer: dynamic(true);;
@@ -877,13 +877,16 @@ $include-ext-window-messagebox: dynamic(true);;
 $include-ext-window-toast: dynamic(true);;
 $include-ext-window-window: dynamic(true);;
 $include-tutorialapp-application: dynamic(true);;
+$include-tutorialapp-model-product: dynamic(true);;
 $include-tutorialapp-store-personnel: dynamic(true);;
+$include-tutorialapp-store-product: dynamic(true);;
 $include-tutorialapp-view-login-login: dynamic(true);;
 $include-tutorialapp-view-login-logincontroller: dynamic(true);;
 $include-tutorialapp-view-main-list: dynamic(true);;
 $include-tutorialapp-view-main-main: dynamic(true);;
 $include-tutorialapp-view-main-maincontroller: dynamic(true);;
 $include-tutorialapp-view-main-mainmodel: dynamic(true);;
+$include-tutorialapp-view-product-list: dynamic(true);;
 $output-paths: ("path": "../resources");
 
 /* ======================== ETC ======================== */
