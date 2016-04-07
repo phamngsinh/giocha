@@ -13,7 +13,7 @@ Ext.define('TutorialApp.view.product.List', {
         type: 'product'
     },
     columns: [
-        {text: 'Tên', dataIndex: 'name'},
+        {text: 'Tên', dataIndex: 'name', flex: 1},
         {text: 'Giá', dataIndex: 'price', flex: 1},
         {text: 'Mô tả', dataIndex: 'description', flex: 1}
     ],
