@@ -19,6 +19,7 @@ Ext.define('TutorialApp.view.order.List', {
         {text: 'Customer', dataIndex: 'user_id', flex: 1},
         {text: 'Product', dataIndex: 'daily_transaction_product_id', flex: 1}
     ],
+
     dockedItems: [
     {
         xtype: 'toolbar',
