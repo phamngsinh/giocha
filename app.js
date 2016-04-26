@@ -5,7 +5,6 @@
  */
 Ext.application({
     name: 'TutorialApp',
-
     extend: 'TutorialApp.Application',
 
     requires: [

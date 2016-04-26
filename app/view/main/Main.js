@@ -8,9 +8,13 @@ Ext.define('TutorialApp.view.main.Main', {
         'TutorialApp.view.main.MainModel',
         'TutorialApp.view.main.List',
         'TutorialApp.view.product.List',
+
         'TutorialApp.view.order.List',
         'TutorialApp.view.order.OrderController',
-        'TutorialApp.view.order.Datbanh'
+        'TutorialApp.view.order.Datbanh',
+
+        'TutorialApp.view.charts.Linemark'
+
     ],
     controller: 'main',
     viewModel: 'main',
@@ -88,12 +92,23 @@ Ext.define('TutorialApp.view.main.Main', {
             iconCls: 'fa-pie-chart',
             items: [{
                     xtype: 'productList'
+
                 }]            
         },
         {
             title: 'Đặt Bánh Giò Chả',
             iconCls: 'fa-yelp',
             items: [{ xtype: 'orderList' } ]
+
+
+                }]
+        },
+        {
+            title: 'Thống kê',
+            iconCls: 'fa-pie-chart',
+            items: [{
+                    xtype: 'line-marked1'
+                }]
 
         },
         {
