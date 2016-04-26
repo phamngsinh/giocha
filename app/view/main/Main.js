@@ -7,7 +7,8 @@ Ext.define('TutorialApp.view.main.Main', {
         'TutorialApp.view.main.MainController',
         'TutorialApp.view.main.MainModel',
         'TutorialApp.view.main.List',
-        'TutorialApp.view.product.List'
+        'TutorialApp.view.product.List',
+        'TutorialApp.view.charts.Linemark'
     ],
     controller: 'main',
     viewModel: 'main',
@@ -84,8 +85,16 @@ Ext.define('TutorialApp.view.main.Main', {
             iconCls: 'fa-pie-chart',
             items: [{
                     xtype: 'productList'
-                }]            
-        }, {
+                }]
+        },
+        {
+            title: 'Thống kê',
+            iconCls: 'fa-pie-chart',
+            items: [{
+                    xtype: 'line-marked1'
+                }]
+        },
+        {
             title: 'Settings',
             iconCls: 'fa-cog',
             bind: {
