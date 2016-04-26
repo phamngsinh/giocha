@@ -1,2 +1,2 @@
-Compass.add_project_configuration('../../../../../sass/config.rb')
-cache_path = '/Library/WebServer/Documents/giocha/build/.sass-cache'
+Compass.add_project_configuration('..\..\..\..\..\sass\config.rb')
+cache_path = 'e:\xampp\htdocs\giocha/build/.sass-cache'

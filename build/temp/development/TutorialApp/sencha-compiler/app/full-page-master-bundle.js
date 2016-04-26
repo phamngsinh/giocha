@@ -1,2 +1,2 @@
 // @tag full-page
-// @require /Library/WebServer/Documents/giocha/app.js
+// @require e:\xampp\htdocs\giocha\app.js
