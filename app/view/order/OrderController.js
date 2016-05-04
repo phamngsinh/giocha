@@ -16,9 +16,12 @@ Ext.define('TutorialApp.view.order.OrderController', {
         this.redirectTo('');
     },
     onAddNewTicket: function(button, e, options){
+        var user_id = localStorage.getItem('currentUser');
         var formPanel = button.up('form'),
-            user_id = formPanel.down('textfield[name=user_id]').getValue(),
-            daily_transaction_product_id = formPanel.down('textfield[name=daily_transaction_product_id]').getValue();
+            //user_id = formPanel.down('textfield[name=user_id]').getValue(),
+            daily_transaction_product_id = formPanel.down('textfield[name=product_id]').getValue(),
+            note = formPanel.down('textfield[name=note]').getValue(),
+            quantity = formPanel.down('textfield[name=quantity]').getValue();
 
         var id = formPanel.down('hiddenfield').getValue();
         var url;
@@ -43,11 +46,11 @@ Ext.define('TutorialApp.view.order.OrderController', {
                     method: 'POST',
                     params: {
                         id: id,
-                        note: 'Note Example',
+                        note: note,
                         status: '2',
                         user_id: '2',
-                        product_id: '2',
-                        quantity: '2'                   
+                        product_id: daily_transaction_product_id,
+                        quantity: quantity                   
                     },
                     failure: function(conn, response, options, eOpts) {
                         Ext.Msg.show({

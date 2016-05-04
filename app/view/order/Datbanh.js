@@ -18,17 +18,25 @@ Ext.define('TutorialApp.view.order.Datbanh', {
         reference: 'form',
         items: [{
             xtype: 'textfield',
-            name: 'user_id',
-            fieldLabel: 'Tên Khách Hàng',
-            allowBlank: false,
-            msgTarget: 'under',
-            bind: '{user_id}'
-        }, {
-            xtype: 'textfield',
-            name: 'daily_transaction_product_id',
+            name: 'product_id',
             fieldLabel: 'Loại Bánh',
             msgTarget: 'under',
-            bind: '{daily_transaction_product_id}'
+            bind: '{product_id}'
+        },
+        {
+            xtype: 'textfield',
+            name: 'note',
+            fieldLabel: 'Note',
+            allowBlank: true,
+            msgTarget: 'under',
+            bind: '{note}'
+        },
+        {
+            xtype: 'textfield',
+            name: 'quantity',
+            fieldLabel: 'Số Lượng',
+            msgTarget: 'under',
+            bind: '{quantity}'
         },
         {
             xtype: 'hiddenfield',
@@ -45,10 +53,10 @@ Ext.define('TutorialApp.view.order.Datbanh', {
             }
         }]
     },
-   /* listeners:{
+    listeners:{
         hide:function(){
-            var store = Ext.create('News.store.Categories');
-            Ext.getCmp('categorieslist').getView().bindStore(store);
+            var store = Ext.create('TutorialApp.store.order');
+            Ext.getCmp('List').getView().bindStore(store);
         }
-    }*/
+    }
 });
