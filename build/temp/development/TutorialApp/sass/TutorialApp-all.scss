@@ -1039,6 +1039,7 @@ $include-ext-window-toast: dynamic(true);;
 $include-ext-window-window: dynamic(true);;
 $include-global: dynamic(true);;
 $include-tutorialapp-application: dynamic(true);;
+$include-tutorialapp-model-chart: dynamic(true);;
 $include-tutorialapp-model-customer: dynamic(true);;
 $include-tutorialapp-model-order: dynamic(true);;
 $include-tutorialapp-model-product: dynamic(true);;
@@ -1063,6 +1064,8 @@ $include-tutorialapp-view-order-datbanh: dynamic(true);;
 $include-tutorialapp-view-order-list: dynamic(true);;
 $include-tutorialapp-view-order-ordercontroller: dynamic(true);;
 $include-tutorialapp-view-product-list: dynamic(true);;
+$include-tutorialapp-view-product-productcontroller: dynamic(true);;
+$include-tutorialapp-view-product-addproductform: dynamic(true);;
 $output-paths: ("path": "../resources");
 
 /* ======================== ETC ======================== */

@@ -22,7 +22,7 @@ Ext.define('TutorialApp.Application', {
         Ext.create({
             xtype: loggedIn ? 'app-main' : 'login'
         });
-//        Ext.create({xtype: 'line-marked1'});
+//        Ext.create({xtype: 'app-main'});
     },
     onAppUpdate: function () {
         Ext.Msg.confirm('Application Update', 'This application has an update, reload?',

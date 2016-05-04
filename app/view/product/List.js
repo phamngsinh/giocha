@@ -6,11 +6,12 @@ Ext.define('TutorialApp.view.product.List', {
     xtype: 'productList',
     id: 'listProduct',
     requires: [
-        'TutorialApp.store.Product'
+        'TutorialApp.store.Product',
+        'TutorialApp.view.product.addProductForm'
     ],
     title: 'Món ăn',
     store: {
-        type: 'product'
+        type: 'Product'
     },
     columns: [
         {text: 'Tên', dataIndex: 'name', flex: 1},
@@ -29,7 +30,7 @@ Ext.define('TutorialApp.view.product.List', {
                 itemId: 'add',
                 iconCls: 'x-fa fa-plus',
                 handler: function() {
-                    var addModal = Ext.create('TutorialApp.view.order.addProductForm');
+                    var addModal = Ext.create('TutorialApp.view.product.addProductForm');
                     addModal.show();
                 }
             }

@@ -66,9 +66,9 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                         addModal.hide();
                     } else {
                         Ext.Msg.show({
-                            title: 'Fail!',
+                            title: 'SUCCESS!',
                             msg: result.message, // #6
-                            icon: Ext.Msg.ERROR,
+                            icon: Ext.Msg.SUCCESS,
                             buttons: Ext.Msg.OK
                         });
                         console.log(result);
