@@ -1,21 +1,18 @@
 Ext.define('TutorialApp.store.Product', {
     extend: 'Ext.data.Store',
-    alias: 'store.product',
-    fields: [
-        'name', 'price', 'description'
+    requires: [
+        'TutorialApp.model.Product'
     ],
-    // model: "TutorialApp.model.Product", 
-    data: [
-            {name: 'Bánh mỳ kẹp chả', price: 12000, description: "Bánh mỳ kẹp chả", creator: 'Dean'},      
-            {name: 'Bánh mỳ kẹp giò', price: 12000, description: "Bánh mỳ kẹp giò", creator: 'Dean'},       
-            {name: 'Bánh giày kẹp chả', price: 12000, description: "Bánh giày kẹp chả", creator: 'Dean'},       
-            {name: 'Bánh giày kẹp giò', price: 12000, description: "Bánh mỳ kẹp giò", creator: 'Dean'}
-        ]
+    alias: 'store.product',
+    model: "TutorialApp.model.Product",
+    autoLoad: true,
+    proxy: {
+        type: 'ajax',
+        url: 'http://localhost/giochaAPI/public/api/products',
+        reader: {
+            type: 'json',
+            rootProperty: ''
+        }
+    }
+
 });
-       // { name: 'id', type: 'int' },
-        //{ name: 'name', type: 'string' },
-        //{ name: 'price', type: 'string' },
-        //{ name: 'description', type: 'string' },
-        //{ name: 'creator', type: 'date' },
-        //{ name: 'created_at', type: 'string' },
-        //{ name: 'updated_at', type: 'string' } 

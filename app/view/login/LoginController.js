@@ -11,7 +11,7 @@ Ext.define('TutorialApp.view.login.LoginController', {
         var loginForm = Ext.getCmp('loginForm').getValues();
         var e = this;
         Ext.Ajax.request({
-            url: 'http://localhost/giochaAPI/public/v1/auth/login',
+            url: 'http://localhost/giochaAPI/public/api/authenticate',
             method: 'POST',
             params: {
                 email: loginForm.username,

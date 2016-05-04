@@ -8,5 +8,6 @@ Ext.define('TutorialApp.model.Product', {
         { name: 'creator', type: 'date' },
         { name: 'created_at', type: 'string' },
         { name: 'updated_at', type: 'string' }        
-    ]    
+    ],
+
 });

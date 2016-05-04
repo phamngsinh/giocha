@@ -69,14 +69,16 @@ Ext.define('TutorialApp.view.main.Main', {
             }
         }
     },
-    items: [{
+    items: [
+        {
             title: 'Home',
             iconCls: 'fa-home',
             // The following grid shares a store with the classic version's grid as well!
             items: [{
                     xtype: 'mainlist'
                 }]
-        }, {
+        },
+        {
             title: 'Users',
             iconCls: 'fa-user',
             bind: {
@@ -88,7 +90,7 @@ Ext.define('TutorialApp.view.main.Main', {
             iconCls: 'fa-pie-chart',
             items: [{
                     xtype: 'productList'
-                }]            
+                }]
         },
         {
             title: 'Đặt Bánh Giò Chả',
