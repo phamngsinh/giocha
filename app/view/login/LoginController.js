@@ -22,7 +22,7 @@ Ext.define('TutorialApp.view.login.LoginController', {
                 if (rs.success) {
                     localStorage.setItem("TutorialLoggedIn", true);
                     localStorage.setItem('Bearer', rs.data.token);
-                    console.log(localStorage.getItem('Bearer'));
+                    localStorage.setItem('currentUser', rs.data.user.id);
                     e.getView().destroy();
                     Ext.create({
                         xtype: 'app-main'
