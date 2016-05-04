@@ -8,7 +8,7 @@ Ext.define('TutorialApp.store.Customer', {
     autoLoad: true,
     proxy: {
         type: 'ajax',
-        url: Global.API + '/users',
+        url: Global.API + '/users?token='+localStorage.getItem('Bearer'),
         reader: {
             type: 'json',
             rootProperty: 'data'
