@@ -60,8 +60,8 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                         result = {};
                         result.msg = conn.responseText;
                     }
+                    var addCustomerModal = button.up('addnewcustomer');
                     if (result.status_code == 200) { // #3
-                        var addModal = button.up('addnewcustomer');
                     } else {
                         Ext.Msg.show({
                             title: 'SUCCESS!',
@@ -70,7 +70,8 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                             buttons: Ext.Msg.OK
                         });
                     }
-                    addModal.hide();
+                    Ext.getCmp('listCustomer').getStore().load();
+                    addCustomerModal.hide();
                 }
             });
         }
@@ -129,7 +130,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                     }
                 });
 
-                grid.getStore().remove(rec);
+                Ext.getCmp('listCustomer').getStore().load();
             }
         });
     }

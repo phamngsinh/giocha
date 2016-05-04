@@ -36,37 +36,44 @@ Ext.define('TutorialApp.view.customer.List', {
             items: [{
                     icon: 'http://cdn.onlinewebfonts.com/svg/img_416627.svg',
                     handler: function (grid, rowIndex, colIndex) {
-                        Ext.Ajax.request({
-                            cors: true,
-                            useDefaultXhrHeader: false,
-                            url: Global.API + '/users/' + grid.getStore().getAt(rowIndex).get('id'),
-                            method: 'DELETE',
-                            failure: function (conn, response, options, eOpts) {
-                                Ext.Msg.show({
-                                    title: 'Error!',
-                                    msg: conn.responseText,
-                                    icon: Ext.Msg.ERROR,
-                                    buttons: Ext.Msg.OK
-                                });
-                            },
-                            success: function (conn, response, options, eOpts) {
-                                Ext.getCmp('listCustomer').getView().refresh();
-                                var result = Ext.JSON.decode(conn.responseText, true);
 
-                                if (!result) {
-                                    result = {};
-                                    result.msg = conn.responseText;
-                                }
+                        var rec = grid.getStore().getAt(rowIndex);
 
-                                if (result.status_code != 200) {
+                        Ext.MessageBox.confirm('Delete', 'Are you sure to delete ' + rec.get('name') + '?', function (btn) {
+                            Ext.Ajax.request({
+                                cors: true,
+                                useDefaultXhrHeader: false,
+                                url: Global.API + '/users/' + grid.getStore().getAt(rowIndex).get('id'),
+                                method: 'DELETE',
+                                failure: function (conn, response, options, eOpts) {
                                     Ext.Msg.show({
-                                        title: 'Success!',
-                                        msg: 'Delete successfuly',
-                                        icon: Ext.Msg.SUCCESS,
+                                        title: 'Error!',
+                                        msg: conn.responseText,
+                                        icon: Ext.Msg.ERROR,
                                         buttons: Ext.Msg.OK
                                     });
+                                },
+                                success: function (conn, response, options, eOpts) {
+//                                Ext.getCmp('listCustomer').getView().refresh();
+//                                Ext.getCmp('listCustomer').getStore().load();
+                                    var result = Ext.JSON.decode(conn.responseText, true);
+
+                                    if (!result) {
+                                        result = {};
+                                        result.msg = conn.responseText;
+                                    }
+
+                                    if (result.status_code != 200) {
+                                        Ext.Msg.show({
+                                            title: 'Success!',
+                                            msg: 'Delete successfuly',
+                                            icon: Ext.Msg.SUCCESS,
+                                            buttons: Ext.Msg.OK
+                                        });
+                                    }
+                                    Ext.getCmp('listCustomer').getStore().load();
                                 }
-                            }
+                            });
                         });
                     }
                 }]
