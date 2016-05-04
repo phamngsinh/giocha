@@ -1,6 +1,8 @@
 Ext.define('TutorialApp.view.product.ProductController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.ProductCTL',
+    requires: [      
+        'TutorialApp.view.product.editProductForm'    ],
     addNewProductAction: function (button, e, options) {
         var _formPanel = button.up('form');
         var _token = localStorage.getItem('Bearer');
@@ -57,8 +59,22 @@ Ext.define('TutorialApp.view.product.ProductController', {
             });
         }
     },
-    onEditProductClick: function () {
-        console.log('asdfasfd')
+    onEditProductClick: function (row) {
+        var view = this.getView();
+        var _data = row.getWidgetRecord();
+                
+        this.dialog = view.add({
+            xtype: 'editProductForm',
+            viewModel: {                
+                links: {
+                    product: row.getWidgetRecord()
+                }
+            },
+            session: true
+        });
+
+        this.dialog.show();
+ 
     },
     onEditCat: function (grid, rowIndex, colIndex) {
         var rec = grid.getStore().getAt(rowIndex);

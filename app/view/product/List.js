@@ -7,12 +7,14 @@ Ext.define('TutorialApp.view.product.List', {
     id: 'listProduct',
     requires: [
         'TutorialApp.store.Product',
-        'TutorialApp.view.product.addProductForm'
+        'TutorialApp.view.product.addProductForm',
+        'TutorialApp.view.product.ProductController'
     ],
     title: 'Món ăn',
     store: {
         type: 'Product'
     },
+    controller: 'ProductCTL',
     columns: [
         {text: 'Tên', dataIndex: 'name', flex: 1},
         {text: 'Giá', dataIndex: 'price', flex: 1},
@@ -23,7 +25,7 @@ Ext.define('TutorialApp.view.product.List', {
             widget: {
                 xtype: 'button',
                 text: 'Edit',
-                handler: 'onEditClick'
+                handler: 'onEditProductClick'
             }
         }
     ],

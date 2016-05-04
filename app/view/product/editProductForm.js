@@ -1,16 +1,15 @@
 Ext.define('TutorialApp.view.product.editProductForm', {
     extend: 'Ext.window.Window',
-    xtype: 'editProduct',
-
+    xtype: 'editProductForm',    
     requires: [
-        'Ext.form.Panel',
-        'TutorialApp.view.product.ProductController'
+        'Ext.form.Panel',        
     ],
-
     controller: 'ProductCTL',
     bodyPadding: 10,
     title: 'Edit product',
-    modal: true,
+    modal: true,    
+    layout: 'fit',
+    closable: true,
     items: {
         xtype: 'form',
         reference: 'editProductForm',
@@ -20,7 +19,7 @@ Ext.define('TutorialApp.view.product.editProductForm', {
             fieldLabel: 'Tên sản phẩm:',
             allowBlank: false,
             msgTarget: 'under',
-            bind: '{name}'
+            bind: '{product}'
         },
         {
             xtype: 'textfield',

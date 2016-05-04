@@ -4,5 +4,6 @@
 Ext.define('TutorialApp.view.product.ProductViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.product',
+    require: 'TutorialApp.model.Product',
     model:'Product'
 });
