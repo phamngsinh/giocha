@@ -1,8 +1,6 @@
 Ext.define('TutorialApp.store.Categories', {
     extend: 'Ext.data.Store',
-
     alias: 'store.categories',
-
     autoLoad: true,
     // pageSize: 5, //item per page
 
