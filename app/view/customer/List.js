@@ -15,7 +15,62 @@ Ext.define('TutorialApp.view.customer.List', {
     columns: [
         {text: 'ID', dataIndex: 'id', flex: 1},
         {text: 'Name', dataIndex: 'name', flex: 1},
-        {text: 'Email', dataIndex: 'email', flex: 1}
+        {text: 'Email', dataIndex: 'email', flex: 1},
+        {
+            xtype: 'actioncolumn',
+            width: 30,
+            sortable: false,
+            menuDisabled: true,
+            items: [{
+                    icon: 'https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_mode_edit_48px-128.png',
+                    handler: function (grid, rowIndex, colIndex) {
+                        console.log(rowIndex);
+                    }
+                }]
+        },
+        {
+            xtype: 'actioncolumn',
+            width: 30,
+            sortable: false,
+            menuDisabled: true,
+            items: [{
+                    icon: 'http://cdn.onlinewebfonts.com/svg/img_416627.svg',
+                    handler: function (grid, rowIndex, colIndex) {
+                        Ext.Ajax.request({
+                            cors: true,
+                            useDefaultXhrHeader: false,
+                            url: Global.API + '/users/' + grid.getStore().getAt(rowIndex).get('id'),
+                            method: 'DELETE',
+                            failure: function (conn, response, options, eOpts) {
+                                Ext.Msg.show({
+                                    title: 'Error!',
+                                    msg: conn.responseText,
+                                    icon: Ext.Msg.ERROR,
+                                    buttons: Ext.Msg.OK
+                                });
+                            },
+                            success: function (conn, response, options, eOpts) {
+                                Ext.getCmp('listCustomer').getView().refresh();
+                                var result = Ext.JSON.decode(conn.responseText, true);
+
+                                if (!result) {
+                                    result = {};
+                                    result.msg = conn.responseText;
+                                }
+
+                                if (result.status_code != 200) {
+                                    Ext.Msg.show({
+                                        title: 'Success!',
+                                        msg: 'Delete successfuly',
+                                        icon: Ext.Msg.SUCCESS,
+                                        buttons: Ext.Msg.OK
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }]
+        }
     ],
     dockedItems: [
         {
@@ -36,8 +91,18 @@ Ext.define('TutorialApp.view.customer.List', {
             ]
         }
     ],
+    onItemTap: function (list, index, target, record, e) {
+        if (e.getTarget('div.edit-button')) {
+            //handle edit button tap
+        } else if (e.getTarget('div.delete-button')) {
+            //handle delete button tap
+        }
+    },
     listeners: {
         select: 'onItemSelected'
-    }
+    },
+});
 
-}); 
+function remove(e) {
+    console.log('fuck');
+}
