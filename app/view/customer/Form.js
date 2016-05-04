@@ -26,6 +26,13 @@ Ext.define('TutorialApp.view.customer.Form', {
                 fieldLabel: 'Email',
                 msgTarget: 'under',
                 bind: '{customerEmail}'
+            },{
+                xtype: 'textfield',
+                name: 'customerPassword',
+                fieldLabel: 'Password',
+                inputType: 'password',
+                msgTarget: 'under',
+                bind: '{customerPassword}'
             },
             {
                 xtype: 'hiddenfield',

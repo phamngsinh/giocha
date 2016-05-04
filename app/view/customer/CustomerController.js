@@ -5,6 +5,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
         // Remove the localStorage key/value
         localStorage.removeItem('loggedIn');
 
+
         // Remove Main View
         this.getView().destroy();
 
@@ -16,9 +17,11 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
         this.redirectTo('');
     },
     onAddNewCat: function (button, e, options) {
+        var _token = localStorage.getItem('Bearer');
         var formPanel = button.up('form'),
                 customerName = formPanel.down('textfield[name=customerName]').getValue(),
                 customerEmail = formPanel.down('textfield[name=customerEmail]').getValue();
+                customerPassword = formPanel.down('textfield[name=customerPassword]').getValue();
 
         var id = formPanel.down('hiddenfield').getValue();
         var url;
@@ -29,7 +32,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
             method = 'PUT';
         } else {
             method = 'POST';
-            url = Global.API + '/users';
+            url = Global.API + '/users?token='+ _token;
         }
 
         if (formPanel.getForm().isValid()) {
@@ -44,6 +47,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                     id: id,
                     name: customerName,
                     email: customerEmail,
+                    password: customerPassword,
                     role: 1
                 },
                 failure: function (conn, response, options, eOpts) {
@@ -71,6 +75,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                             icon: Ext.Msg.SUCCESS,
                             buttons: Ext.Msg.OK
                         });
+                        addModal.hide();
                         console.log(result);
                     }
                 }
