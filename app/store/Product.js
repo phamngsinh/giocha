@@ -3,7 +3,7 @@ Ext.define('TutorialApp.store.Product', {
     requires: [
         'TutorialApp.model.Product'
     ],
-    alias: 'store.product',
+    alias: 'store.Product',
     model: "TutorialApp.model.Product",
     autoLoad: true,
     proxy: {
@@ -11,7 +11,7 @@ Ext.define('TutorialApp.store.Product', {
         url: 'http://localhost/giochaAPI/public/api/products',
         reader: {
             type: 'json',
-            rootProperty: ''
+            rootProperty: 'data'
         }
     }
 

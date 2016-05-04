@@ -18,7 +18,7 @@ Ext.define('TutorialApp.view.main.Main', {
     controller: 'main',
     viewModel: 'main',
     plugins: 'viewport',
-//    ui: 'navigation',
+    ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
     tabRotation: 0,
@@ -99,6 +99,12 @@ Ext.define('TutorialApp.view.main.Main', {
             title: 'Đặt Bánh Giò Chả',
             iconCls: 'fa-yelp',
             items: [{xtype: 'orderList'}]
+
+        },
+         {
+            title: 'Thống kê',
+            iconCls: 'fa-pie-chart',
+            items: [{ xtype: 'line-marked1' } ]
 
         },
         {
