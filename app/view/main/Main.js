@@ -10,12 +10,15 @@ Ext.define('TutorialApp.view.main.Main', {
         'TutorialApp.view.product.List',
         'TutorialApp.view.order.List',
         'TutorialApp.view.order.OrderController',
-        'TutorialApp.view.order.Datbanh'
+        'TutorialApp.view.order.Datbanh',
+        'TutorialApp.view.customer.List',
+        'TutorialApp.view.customer.CustomerController',
+        'TutorialApp.view.customer.Form'
     ],
     controller: 'main',
     viewModel: 'main',
     plugins: 'viewport',
-    ui: 'navigation',
+//    ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
     tabRotation: 0,
@@ -81,10 +84,10 @@ Ext.define('TutorialApp.view.main.Main', {
         {
             title: 'Users',
             iconCls: 'fa-user',
-            bind: {
-                html: '{loremIpsum}'
-            }
-        }, 
+            items: [{
+                    xtype: 'customerList'
+                }]
+        },
         {
             title: 'Sản phẩm',
             iconCls: 'fa-pie-chart',
@@ -95,7 +98,7 @@ Ext.define('TutorialApp.view.main.Main', {
         {
             title: 'Đặt Bánh Giò Chả',
             iconCls: 'fa-yelp',
-            items: [{ xtype: 'orderList' } ]
+            items: [{xtype: 'orderList'}]
 
         },
         {
@@ -105,5 +108,5 @@ Ext.define('TutorialApp.view.main.Main', {
                 html: '{loremIpsum}'
             }
         }]
-    
+
 });
