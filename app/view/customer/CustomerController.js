@@ -17,8 +17,8 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
     },
     onAddNewCat: function (button, e, options) {
         var formPanel = button.up('form'),
-                user_id = formPanel.down('textfield[name=user_id]').getValue(),
-                daily_transaction_product_id = formPanel.down('textfield[name=daily_transaction_product_id]').getValue();
+                customerName = formPanel.down('textfield[name=customerName]').getValue(),
+                customerEmail = formPanel.down('textfield[name=customerEmail]').getValue();
 
         var id = formPanel.down('hiddenfield').getValue();
         var url;
@@ -29,8 +29,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
             method = 'PUT';
         } else {
             method = 'POST';
-            url = 'http://192.168.1.87/giochaAPI/public/customer/store';
-            // url = 'http://localhost:8080/newsApi/public/api/add-category';
+            url = Global.API + '/users';
         }
 
         if (formPanel.getForm().isValid()) {
@@ -43,12 +42,9 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                 method: 'POST',
                 params: {
                     id: id,
-                    note: '',
-                    status: '',
-                    user_id: user_id,
-                    daily_transaction_product_id: daily_transaction_product_id,
-                    created_at: '',
-                    updated_at: ''
+                    name: customerName,
+                    email: customerEmail,
+                    role: 1
                 },
                 failure: function (conn, response, options, eOpts) {
                     Ext.Msg.show({

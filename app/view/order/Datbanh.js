@@ -45,10 +45,10 @@ Ext.define('TutorialApp.view.order.Datbanh', {
             }
         }]
     },
-    listeners:{
+   /* listeners:{
         hide:function(){
             var store = Ext.create('News.store.Categories');
             Ext.getCmp('categorieslist').getView().bindStore(store);
         }
-    }
+    }*/
 });

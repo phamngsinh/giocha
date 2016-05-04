@@ -1,8 +1,6 @@
-Ext.define('News.store.Categories', {
+Ext.define('TutorialApp.store.Categories', {
     extend: 'Ext.data.Store',
-
     alias: 'store.categories',
-
     autoLoad: true,
     // pageSize: 5, //item per page
 
@@ -11,6 +9,6 @@ Ext.define('News.store.Categories', {
     ],
     proxy: {
         type: 'rest',
-//        url: News.modules.util.common.Util.baseUrl + '/categories'
+        //url: News.modules.util.common.Util.baseUrl + '/categories'
     }
 });

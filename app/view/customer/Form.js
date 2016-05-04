@@ -15,17 +15,17 @@ Ext.define('TutorialApp.view.customer.Form', {
         reference: 'form',
         items: [{
                 xtype: 'textfield',
-                name: 'user_id',
+                name: 'customerName',
                 fieldLabel: 'Tên Khách Hàng',
                 allowBlank: false,
                 msgTarget: 'under',
-                bind: '{user_id}'
+                bind: '{customerName}'
             }, {
                 xtype: 'textfield',
-                name: 'daily_transaction_product_id',
-                fieldLabel: 'Loại Bánh',
+                name: 'customerEmail',
+                fieldLabel: 'Email',
                 msgTarget: 'under',
-                bind: '{daily_transaction_product_id}'
+                bind: '{customerEmail}'
             },
             {
                 xtype: 'hiddenfield',

@@ -2,7 +2,7 @@
     /**
      * The application's namespace.
      */
-    "name": "KitchenSink",
+    "name": "TutorialApp",
     
     /**
      * The version of the application.
@@ -86,13 +86,13 @@
     "sass": {
         /**
          * The root namespace to use when mapping *.scss files to classes in the
-         * sass/src and sass/var directories. For example, "KitchenSink.view.Foo" would
-         * map to "sass/src/view/Foo.scss". If we changed this to "KitchenSink.view" then
+         * sass/src and sass/var directories. For example, "TutorialApp.view.Foo" would
+         * map to "sass/src/view/Foo.scss". If we changed this to "TutorialApp.view" then
          * it would map to "sass/src/Foo.scss". To style classes outside the app's
          * root namespace, change this to "". Doing so would change the mapping of
-         * "KitchenSink.view.Foo" to "sass/src/KitchenSink/view/Foo.scss".
+         * "TutorialApp.view.Foo" to "sass/src/TutorialApp/view/Foo.scss".
          */
-        "namespace": "KitchenSink",
+        "namespace": "TutorialApp",
 
         /**
          * File used to save sass variables edited via Sencha Inspector. This file
@@ -516,5 +516,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "9f9711a4-98d7-4180-ac4f-eaf8e8779cc0"
+    "id": "ceaae4f8-d1bb-4721-9466-9c19caffde75"
 }
