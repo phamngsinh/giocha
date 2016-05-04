@@ -1,7 +1,7 @@
 
 Ext.define('TutorialApp.view.order.Datbanh', {
     extend: 'Ext.window.Window',
-    xtype: 'add-new-category',
+    xtype: 'add-new-ticket',
 
     requires: [
         'Ext.form.Panel',
@@ -10,7 +10,7 @@ Ext.define('TutorialApp.view.order.Datbanh', {
 
     controller: 'order',
     bodyPadding: 10,
-    title: 'Add new category',
+    title: 'Add new ticket',
     modal: true,
 
     items: {
@@ -41,7 +41,7 @@ Ext.define('TutorialApp.view.order.Datbanh', {
             formBind: true,
             name: 'save',
             listeners: {
-                click: 'onAddNewCat'
+                click: 'onAddNewTicket'
             }
         }]
     },

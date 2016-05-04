@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'TutorialApp' );
-$image-search-path: 'D:/EXTJS/Projects/giocha/build/development/TutorialApp/resources';
+$image-search-path: 'e:/xampp/htdocs/giocha/build/development/TutorialApp/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractcontainer: dynamic(true);;
