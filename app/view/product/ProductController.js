@@ -43,8 +43,8 @@ Ext.define('TutorialApp.view.product.ProductController', {
                     if (result.status_code == 200) { // #3
                         var addModal = button.up('addProductForm');
                         addModal.hide();
-                        Ext.getCmp('listProduct').getView().refresh();
-                        TutorialApp.view.product.List.getView().refresh();
+                        //Ext.getCmp('productList').getView().refresh();
+                        //Ext.getCmp('listProduct').getStore().load();
                     } else {
                         Ext.Msg.show({
                             title: 'Fail!',
@@ -52,11 +52,13 @@ Ext.define('TutorialApp.view.product.ProductController', {
                             icon: Ext.Msg.ERROR,
                             buttons: Ext.Msg.OK
                         });
-                        console.log(result);
                     }
                 }
             });
         }
+    },
+    onEditProductClick: function () {
+        console.log('asdfasfd')
     },
     onEditCat: function (grid, rowIndex, colIndex) {
         var rec = grid.getStore().getAt(rowIndex);

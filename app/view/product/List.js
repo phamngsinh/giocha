@@ -16,7 +16,16 @@ Ext.define('TutorialApp.view.product.List', {
     columns: [
         {text: 'Tên', dataIndex: 'name', flex: 1},
         {text: 'Giá', dataIndex: 'price', flex: 1},
-        {text: 'Mô tả', dataIndex: 'description', flex: 1}
+        {text: 'Mô tả', dataIndex: 'description', flex: 1},
+        {
+            xtype: 'widgetcolumn',
+            width: 90,
+            widget: {
+                xtype: 'button',
+                text: 'Edit',
+                handler: 'onEditClick'
+            }
+        }
     ],
     dockedItems: [
     {
