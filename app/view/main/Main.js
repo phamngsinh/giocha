@@ -13,7 +13,7 @@ Ext.define('TutorialApp.view.main.Main', {
     controller: 'main',
     viewModel: 'main',
     plugins: 'viewport',
-    ui: 'navigation',
+//    ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
     tabRotation: 0,
