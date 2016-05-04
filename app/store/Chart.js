@@ -3,17 +3,11 @@ Ext.define('TutorialApp.store.Chart', {
     alias: 'store.browsers',
 
     //                   IE    Firefox  Chrome   Safari
-    fields: ['month', 'data1', 'data2', 'data3', 'data4', 'other'],
-    model: "TutorialApp.model.Order",
+    //fields: ['month', 'data1', 'data2', 'data3', 'data4', 'other'],
+    model: "TutorialApp.model.Chart",
     autoLoad: true,
-    proxy: {
-        type: 'ajax',
-        url: 'http://192.168.1.87/giochaAPI/public/api/orders?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvMTkyLjE2OC4xLjg3XC9naW9jaGFBUElcL3B1YmxpY1wvYXBpXC9hdXRoZW50aWNhdGUiLCJpYXQiOjE0NjIzNTY3OTgsImV4cCI6MTQ2MjM2Mzk5OCwibmJmIjoxNDYyMzU2Nzk4LCJqdGkiOiI3M2I3NjU1MjU2YjhkYzdmMmJmM2FhZmIwMWMzZDYwZiJ9.o5R8xpHVSFlJSuoHkFpfhxdsT_f1pXDc2DCPyj347IU',
-        reader: {
-            type: 'json',
-            rootProperty: ''
-        }
-    },
+    pageSize: 25,
+    remoteSort: true,
 //    constructor: function (config) {
 //        config = config || {};
 //        

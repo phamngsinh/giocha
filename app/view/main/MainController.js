@@ -22,7 +22,6 @@ Ext.define('TutorialApp.view.main.MainController', {
         });
     },
     init: function () {
-        console.log(localStorage.getItem('Bearer'));
         var store = Ext.create('TutorialApp.store.Personnel', {
             autoLoad: true,
             autoSync: true,
@@ -31,7 +30,7 @@ Ext.define('TutorialApp.view.main.MainController', {
             proxy: {
                 type: 'rest',
                 api: {
-                    read: 'http://192.168.1.87/ypc571/public/v1/administrator/users',
+                    read: 'http://localhost/giochaAPI/public/api/users',
                 },
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('Bearer')

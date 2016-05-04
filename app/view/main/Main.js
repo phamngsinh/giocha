@@ -8,12 +8,14 @@ Ext.define('TutorialApp.view.main.Main', {
         'TutorialApp.view.main.MainModel',
         'TutorialApp.view.main.List',
         'TutorialApp.view.product.List',
-        'TutorialApp.view.charts.Linemark'
+        'TutorialApp.view.order.List',
+        'TutorialApp.view.order.OrderController',
+        'TutorialApp.view.order.Datbanh'
     ],
     controller: 'main',
     viewModel: 'main',
     plugins: 'viewport',
-//    ui: 'navigation',
+    ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
     tabRotation: 0,
@@ -67,20 +69,23 @@ Ext.define('TutorialApp.view.main.Main', {
             }
         }
     },
-    items: [{
+    items: [
+        {
             title: 'Home',
             iconCls: 'fa-home',
             // The following grid shares a store with the classic version's grid as well!
             items: [{
                     xtype: 'mainlist'
                 }]
-        }, {
+        },
+        {
             title: 'Users',
             iconCls: 'fa-user',
             bind: {
                 html: '{loremIpsum}'
             }
-        }, {
+        }, 
+        {
             title: 'Sản phẩm',
             iconCls: 'fa-pie-chart',
             items: [{
@@ -88,11 +93,16 @@ Ext.define('TutorialApp.view.main.Main', {
                 }]
         },
         {
+            title: 'Đặt Bánh Giò Chả',
+            iconCls: 'fa-yelp',
+            items: [{ xtype: 'orderList' } ]
+
+        },
+         {
             title: 'Thống kê',
             iconCls: 'fa-pie-chart',
-            items: [{
-                    xtype: 'line-marked1'
-                }]
+            items: [{ xtype: 'line-marked1' } ]
+
         },
         {
             title: 'Settings',
@@ -101,4 +111,5 @@ Ext.define('TutorialApp.view.main.Main', {
                 html: '{loremIpsum}'
             }
         }]
+    
 });
