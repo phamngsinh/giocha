@@ -1,5 +1,5 @@
 Ext.define('News.store.Categories', {
-    extend: 'News.modules.ultil.store.Base',
+    extend: 'Ext.data.Store',
 
     alias: 'store.categories',
 
@@ -11,6 +11,6 @@ Ext.define('News.store.Categories', {
     ],
     proxy: {
         type: 'rest',
-        url: News.modules.util.common.Util.baseUrl + '/categories'
+//        url: News.modules.util.common.Util.baseUrl + '/categories'
     }
 });
