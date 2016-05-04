@@ -82,7 +82,7 @@ Ext.define('TutorialApp.view.main.Main', {
                 }]
         },
         {
-            title: 'Users',
+            title: 'Khách hàng',
             iconCls: 'fa-user',
             items: [{
                     xtype: 'customerList'

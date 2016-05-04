@@ -1,7 +1,7 @@
 
 Ext.define('TutorialApp.view.customer.Form', {
     extend: 'Ext.window.Window',
-    xtype: 'add-new-category',
+    xtype: 'addnewcustomer',
     requires: [
         'Ext.form.Panel',
         'TutorialApp.view.customer.CustomerController'
