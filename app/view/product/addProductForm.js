@@ -1,6 +1,6 @@
 Ext.define('TutorialApp.view.product.addProductForm', {
     extend: 'Ext.window.Window',
-    xtype: 'addProduct',
+    xtype: 'addProductForm',
 
     requires: [
         'Ext.form.Panel',

@@ -74,7 +74,7 @@ Ext.define('TutorialApp.view.main.Main', {
     },
     items: [
         {
-            title: 'Home',
+            title: 'Trang chủ',
             iconCls: 'fa-home',
             // The following grid shares a store with the classic version's grid as well!
             items: [{
@@ -101,18 +101,11 @@ Ext.define('TutorialApp.view.main.Main', {
             items: [{xtype: 'orderList'}]
 
         },
-         {
+        {
             title: 'Thống kê',
             iconCls: 'fa-pie-chart',
-            items: [{ xtype: 'line-marked1' } ]
+            items: [{xtype: 'line-marked1'}]
 
-        },
-        {
-            title: 'Settings',
-            iconCls: 'fa-cog',
-            bind: {
-                html: '{loremIpsum}'
-            }
         }]
 
 });

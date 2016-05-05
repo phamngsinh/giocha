@@ -4,21 +4,6 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
     requires: [
         'TutorialApp.view.customer.editCustomerForm'
     ],
-    onLogoutButton: function () {
-        // Remove the localStorage key/value
-        localStorage.removeItem('loggedIn');
-
-
-        // Remove Main View
-        this.getView().destroy();
-
-        // Add the Login Window
-        Ext.create({
-            xtype: 'app-main'
-        });
-
-        this.redirectTo('');
-    },
     onAddNewCat: function (button, e, options) {
         var _token = localStorage.getItem('Bearer');
         var formPanel = button.up('form'),

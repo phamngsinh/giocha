@@ -17,14 +17,14 @@ Ext.define('TutorialApp.view.customer.List', {
     controller: 'customer',
     columns: [
         {text: 'ID', dataIndex: 'id', flex: 1},
-        {text: 'Name', dataIndex: 'name', flex: 1},
+        {text: 'Tên Khách hàng', dataIndex: 'name', flex: 1},
         {text: 'Email', dataIndex: 'email', flex: 1},
         {
             xtype: 'widgetcolumn',
             width: 90,
             widget: {
                 xtype: 'button',
-                text: 'Edit',
+                text: 'Sửa',
                 handler: 'onEditCustomer'
             }
         },
