@@ -8,7 +8,7 @@ Ext.define('TutorialApp.store.Product', {
     autoLoad: true,
     proxy: {
         type: 'ajax',
-        url: 'http://localhost/giochaAPI/public/api/products',
+        url: Global.API + '/products',
         reader: {
             type: 'json',
             rootProperty: 'data'

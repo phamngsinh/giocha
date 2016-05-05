@@ -6,27 +6,27 @@ Ext.define('TutorialApp.view.customer.List', {
     xtype: 'customerList',
     id: 'listCustomer',
     requires: [
-        'TutorialApp.store.Customer'
+        'TutorialApp.store.Customer',
+        'TutorialApp.view.customer.CustomerController',
+        'TutorialApp.view.customer.editCustomerForm'
     ],
     title: 'Khách hàng',
     store: {
         type: 'customer'
     },
+    controller: 'customer',
     columns: [
         {text: 'ID', dataIndex: 'id', flex: 1},
         {text: 'Name', dataIndex: 'name', flex: 1},
         {text: 'Email', dataIndex: 'email', flex: 1},
         {
-            xtype: 'actioncolumn',
-            width: 30,
-            sortable: false,
-            menuDisabled: true,
-            items: [{
-                    icon: 'https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_mode_edit_48px-128.png',
-                    handler: function (grid, rowIndex, colIndex) {
-                        console.log(rowIndex);
-                    }
-                }]
+            xtype: 'widgetcolumn',
+            width: 90,
+            widget: {
+                xtype: 'button',
+                text: 'Edit',
+                handler: 'onEditCustomer'
+            }
         },
         {
             xtype: 'actioncolumn',
@@ -43,7 +43,7 @@ Ext.define('TutorialApp.view.customer.List', {
                             Ext.Ajax.request({
                                 cors: true,
                                 useDefaultXhrHeader: false,
-                                url: Global.API + '/users/' + grid.getStore().getAt(rowIndex).get('id'),
+                                url: Global.API + '/users/' + grid.getStore().getAt(rowIndex).get('id') + '&token=' + localStorage.getItem('Bearer'),
                                 method: 'DELETE',
                                 failure: function (conn, response, options, eOpts) {
                                     Ext.Msg.show({
@@ -109,7 +109,3 @@ Ext.define('TutorialApp.view.customer.List', {
         select: 'onItemSelected'
     },
 });
-
-function remove(e) {
-    console.log('fuck');
-}
