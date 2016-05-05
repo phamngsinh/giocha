@@ -19,25 +19,25 @@ Ext.define('TutorialApp.view.product.editProductForm', {
             fieldLabel: 'Tên sản phẩm:',
             allowBlank: false,
             msgTarget: 'under',
-            bind: '{product}'
+            bind: '{row.name}'
         },
         {
             xtype: 'textfield',
             name: 'price',
             fieldLabel: 'Giá',
             msgTarget: 'under',
-            bind: '{price}'
+            bind: '{row.price}'
         },
         {
             xtype: 'textfield',
             name: 'description',
             fieldLabel: 'Mô tả',
             msgTarget: 'under',
-            bind: '{description}'
+            bind: '{row.description}'
         },{
                 xtype: 'hiddenfield',
                 name: 'id',
-                bind: '{id}'
+                bind: '{row.id}'
             }],
         buttons: [
             {
@@ -45,7 +45,7 @@ Ext.define('TutorialApp.view.product.editProductForm', {
                 formBind: true,
                 name: 'save',
                 listeners: {
-                    click: 'addNewProductAction'
+                    click: 'editProductAction'
                 }
             }]
     },
