@@ -17,7 +17,8 @@ Ext.define('TutorialApp.view.order.List', {
         {text: 'Note', dataIndex: 'note', flex: 1},
         {text: 'Status', dataIndex: 'status', flex: 1},
         {text: 'Customer', dataIndex: 'user_id', flex: 1},
-        {text: 'Product', dataIndex: 'daily_transaction_product_id', flex: 1}
+        {text: 'Product', dataIndex: 'product_id', flex: 1},
+        {text: 'Quantity', dataIndex: 'quantity', flex: 1}
     ],
     dockedItems: [
     {
