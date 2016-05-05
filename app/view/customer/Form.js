@@ -1,7 +1,7 @@
 
 Ext.define('TutorialApp.view.customer.Form', {
     extend: 'Ext.window.Window',
-    xtype: 'add-new-category',
+    xtype: 'addnewcustomer',
     requires: [
         'Ext.form.Panel',
         'TutorialApp.view.customer.CustomerController'
@@ -26,6 +26,13 @@ Ext.define('TutorialApp.view.customer.Form', {
                 fieldLabel: 'Email',
                 msgTarget: 'under',
                 bind: '{customerEmail}'
+            },{
+                xtype: 'textfield',
+                name: 'customerPassword',
+                fieldLabel: 'Password',
+                inputType: 'password',
+                msgTarget: 'under',
+                bind: '{customerPassword}'
             },
             {
                 xtype: 'hiddenfield',

@@ -5,6 +5,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
         // Remove the localStorage key/value
         localStorage.removeItem('loggedIn');
 
+
         // Remove Main View
         this.getView().destroy();
 
@@ -16,20 +17,18 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
         this.redirectTo('');
     },
     onAddNewCat: function (button, e, options) {
+        var _token = localStorage.getItem('Bearer');
         var formPanel = button.up('form'),
                 customerName = formPanel.down('textfield[name=customerName]').getValue(),
                 customerEmail = formPanel.down('textfield[name=customerEmail]').getValue();
+        customerPassword = formPanel.down('textfield[name=customerPassword]').getValue();
 
         var id = formPanel.down('hiddenfield').getValue();
-        var url;
-
+        var url = Global.API + '/users?token=' + _token;
         if (id) {
-            url = 'http://news.api/api/edit-category';
-            // url = 'http://localhost:8080/newsApi/public/api/edit-category';
             method = 'PUT';
         } else {
             method = 'POST';
-            url = Global.API + '/users';
         }
 
         if (formPanel.getForm().isValid()) {
@@ -44,6 +43,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                     id: id,
                     name: customerName,
                     email: customerEmail,
+                    password: customerPassword,
                     role: 1
                 },
                 failure: function (conn, response, options, eOpts) {
@@ -56,23 +56,22 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                 },
                 success: function (conn, response, options, eOpts) {
                     var result = Ext.JSON.decode(conn.responseText, true);
-
                     if (!result) { // #2
                         result = {};
                         result.msg = conn.responseText;
                     }
+                    var addCustomerModal = button.up('addnewcustomer');
                     if (result.status_code == 200) { // #3
-                        var addModal = button.up('add-new-category');
-                        addModal.hide();
                     } else {
                         Ext.Msg.show({
-                            title: 'Fail!',
+                            title: 'SUCCESS!',
                             msg: result.message, // #6
-                            icon: Ext.Msg.ERROR,
+                            icon: Ext.Msg.SUCCESS,
                             buttons: Ext.Msg.OK
                         });
-                        console.log(result);
                     }
+                    Ext.getCmp('listCustomer').getStore().load();
+                    addCustomerModal.hide();
                 }
             });
         }
@@ -131,7 +130,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                     }
                 });
 
-                grid.getStore().remove(rec);
+                Ext.getCmp('listCustomer').getStore().load();
             }
         });
     }
