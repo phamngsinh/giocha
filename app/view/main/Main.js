@@ -74,14 +74,6 @@ Ext.define('TutorialApp.view.main.Main', {
     },
     items: [
         {
-            title: 'Trang chủ',
-            iconCls: 'fa-home',
-            // The following grid shares a store with the classic version's grid as well!
-            items: [{
-                    xtype: 'mainlist'
-                }]
-        },
-        {
             title: 'Khách hàng',
             iconCls: 'fa-user',
             items: [{
