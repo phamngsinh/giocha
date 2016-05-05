@@ -82,13 +82,12 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
         var _token = localStorage.getItem('Bearer');
         var _customer = this.lookupReference('editCustomerForm').getValues();
         console.log(_customer);
-        var _url = Global.API + '/customers/' + _customer.id + '?token=' + _token;
+        var _url = Global.API + '/users/' + _customer.id + '?token=' + _token;
 
 
         var _params = {
-            name: _customer.name,
-            description: _customer.description,
-            price: _customer.price
+            name: _customer.customerName,
+            email: _customer.customerEmail
         };
 
         if (_formPanel.getForm().isValid()) {
@@ -114,9 +113,16 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                         result = {};
                         result.msg = conn.responseText;
                     }
-                    if (result.status_code == 200) { // #3
+                    
+                    if (result.code == 200) { // #3
                         //Ext.getCmp('productList').getView().refresh();
                         //Ext.getCmp('listProduct').getStore().load();
+                        Ext.Msg.show({
+                            title: 'Success !',
+                            msg: result.message, // #6
+                            icon: Ext.Msg.SUCCESS,
+                            buttons: Ext.Msg.OK
+                        });
                     } else {
                         Ext.Msg.show({
                             title: 'Fail!',
@@ -125,6 +131,7 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
                             buttons: Ext.Msg.OK
                         });
                     }
+                    
                     var addModal = button.up('editCustomerForm');
                     addModal.hide();
                     Ext.getCmp('listCustomer').getStore().load();

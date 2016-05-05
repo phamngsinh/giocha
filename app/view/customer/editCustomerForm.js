@@ -50,8 +50,8 @@ Ext.define('TutorialApp.view.customer.editCustomerForm', {
     },
     listeners: {
         hide: function () {
-            var store = Ext.create('News.store.Categories');
-            Ext.getCmp('categorieslist').getView().bindStore(store);
+            //var store = Ext.create('News.store.Categories');
+            //Ext.getCmp('categorieslist').getView().bindStore(store);
         }
     }
 });
