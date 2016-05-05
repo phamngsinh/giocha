@@ -1,43 +1,42 @@
 
-Ext.define('TutorialApp.view.customer.Form', {
+Ext.define('TutorialApp.view.customer.editCustomerForm', {
     extend: 'Ext.window.Window',
-    xtype: 'addnewcustomer',
+    xtype: 'editCustomerForm',
     requires: [
-        'Ext.form.Panel',
-        'TutorialApp.view.customer.CustomerController'
+        'Ext.form.Panel'
     ],
     controller: 'customer',
     bodyPadding: 10,
-    title: 'Thêm khách hàng mới',
+    title: 'Sửa khách hàng',
     modal: true,
     items: {
         xtype: 'form',
-        reference: 'form',
+        reference: 'editCustomerForm',
         items: [{
                 xtype: 'textfield',
                 name: 'customerName',
                 fieldLabel: 'Tên Khách Hàng',
                 allowBlank: false,
                 msgTarget: 'under',
-                bind: '{customerName}'
+                bind: '{row.name}'
             }, {
                 xtype: 'textfield',
                 name: 'customerEmail',
                 fieldLabel: 'Email',
                 msgTarget: 'under',
-                bind: '{customerEmail}'
-            },{
+                bind: '{row.email}'
+            }, {
                 xtype: 'textfield',
                 name: 'customerPassword',
                 fieldLabel: 'Password',
                 inputType: 'password',
                 msgTarget: 'under',
-                bind: '{customerPassword}'
+                bind: '{row.password}'
             },
             {
                 xtype: 'hiddenfield',
                 name: 'id',
-                bind: '{id}'
+                bind: '{row.id}'
             }],
         buttons: [
             {
@@ -45,7 +44,7 @@ Ext.define('TutorialApp.view.customer.Form', {
                 formBind: true,
                 name: 'save',
                 listeners: {
-                    click: 'onAddNewCat'
+                    click: 'updateCustomer'
                 }
             }]
     },

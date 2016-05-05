@@ -1,21 +1,9 @@
 Ext.define('TutorialApp.view.customer.CustomerController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.customer',
-    onLogoutButton: function () {
-        // Remove the localStorage key/value
-        localStorage.removeItem('loggedIn');
-
-
-        // Remove Main View
-        this.getView().destroy();
-
-        // Add the Login Window
-        Ext.create({
-            xtype: 'app-main'
-        });
-
-        this.redirectTo('');
-    },
+    requires: [
+        'TutorialApp.view.customer.editCustomerForm'
+    ],
     onAddNewCat: function (button, e, options) {
         var _token = localStorage.getItem('Bearer');
         var formPanel = button.up('form'),
@@ -76,62 +64,80 @@ Ext.define('TutorialApp.view.customer.CustomerController', {
             });
         }
     },
-    onEditCat: function (grid, rowIndex, colIndex) {
-        var rec = grid.getStore().getAt(rowIndex);
-
-        var editModal = Ext.create('News.view.backend.AddNewCategoryForm');
-        var form = editModal.down('form');
-
-        form.loadRecord(rec);
+    onEditCustomer: function (row) {
+        var view = this.getView();
+        var _data = row.getWidgetRecord();
+        var editModal = Ext.create('TutorialApp.view.customer.editCustomerForm', {
+            viewModel: {
+                data: {
+                    row: _data.data
+                }
+            }
+        });
         editModal.show();
 
     },
-    onDeleteCat: function (grid, rowIndex, colIndex) {
-        var rec = grid.getStore().getAt(rowIndex);
-        var categoryId = rec.get('id');
+    updateCustomer: function (button, e, options) {
+        var _formPanel = button.up('form');
+        var _token = localStorage.getItem('Bearer');
+        var _customer = this.lookupReference('editCustomerForm').getValues();
+        console.log(_customer);
+        var _url = Global.API + '/users/' + _customer.id + '?token=' + _token;
 
-        Ext.MessageBox.confirm('Delete', 'Are you sure to delete category ' + rec.get('name') + '?', function (btn) {
-            if (btn === 'yes') {
-                Ext.Ajax.useDefaultXhrHeader = false;
 
-                Ext.Ajax.request({
-                    cors: true,
-                    useDefaultXhrHeader: false,
-                    url: 'http://news.api/api/delete-category',
-                    // url: 'http://localhost:8080/newsApi/public/api/delete-category',
-                    method: 'POST',
-                    params: {
-                        id: categoryId
-                    },
-                    failure: function (conn, response, options, eOpts) {
+        var _params = {
+            name: _customer.customerName,
+            email: _customer.customerEmail
+        };
+
+        if (_formPanel.getForm().isValid()) {
+            Ext.Ajax.useDefaultXhrHeader = false;
+            Ext.Ajax.request({
+                cors: true,
+                useDefaultXhrHeader: false,
+                url: _url,
+                method: 'PUT',
+                params: _params,
+                failure: function (conn, response, options, eOpts) {
+                    Ext.Msg.show({
+                        title: 'Error!',
+                        msg: conn.responseText,
+                        icon: Ext.Msg.ERROR,
+                        buttons: Ext.Msg.OK
+                    });
+                },
+                success: function (conn, response, options, eOpts) {
+                    var result = Ext.JSON.decode(conn.responseText, true);
+
+                    if (!result) { // #2
+                        result = {};
+                        result.msg = conn.responseText;
+                    }
+                    
+                    if (result.code == 200) { // #3
+                        //Ext.getCmp('productList').getView().refresh();
+                        //Ext.getCmp('listProduct').getStore().load();
                         Ext.Msg.show({
-                            title: 'Error!',
-                            msg: conn.responseText,
+                            title: 'Success !',
+                            msg: result.message, // #6
+                            icon: Ext.Msg.SUCCESS,
+                            buttons: Ext.Msg.OK
+                        });
+                    } else {
+                        Ext.Msg.show({
+                            title: 'Fail!',
+                            msg: result.message, // #6
                             icon: Ext.Msg.ERROR,
                             buttons: Ext.Msg.OK
                         });
-                    },
-                    success: function (conn, response, options, eOpts) {
-                        var result = Ext.JSON.decode(conn.responseText, true);
-
-                        if (!result) {
-                            result = {};
-                            result.msg = conn.responseText;
-                        }
-
-                        if (result.status_code != 200) {
-                            Ext.Msg.show({
-                                title: 'Fail!',
-                                msg: result.msg,
-                                icon: Ext.Msg.ERROR,
-                                buttons: Ext.Msg.OK
-                            });
-                        }
                     }
-                });
+                    
+                    var addModal = button.up('editCustomerForm');
+                    addModal.hide();
+                    Ext.getCmp('listCustomer').getStore().load();
+                }
+            });
+        }
 
-                Ext.getCmp('listCustomer').getStore().load();
-            }
-        });
     }
 });
