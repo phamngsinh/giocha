@@ -8,7 +8,7 @@ Ext.define('TutorialApp.store.Product', {
     autoLoad: true,
     proxy: {
         type: 'ajax',
-        url: 'http://localhost/giochaAPI/public/api/products?token='+localStorage.getItem('Bearer'),
+        url: 'http://localhost/giochaAPI/public/api/products?token='+ localStorage.getItem('Bearer'),
         reader: {
             type: 'json',
             rootProperty: 'data'

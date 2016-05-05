@@ -13,7 +13,7 @@ Ext.define('TutorialApp.view.customer.List', {
         type: 'customer'
     },
     columns: [
-        {text: 'ID', dataIndex: 'id', flex: 1},
+        {text: 'ID', dataIndex: 'id', width: 60},
         {text: 'Name', dataIndex: 'name', flex: 1},
         {text: 'Email', dataIndex: 'email', flex: 1},
         {

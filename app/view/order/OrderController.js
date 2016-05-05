@@ -27,13 +27,11 @@ Ext.define('TutorialApp.view.order.OrderController', {
         var url;
 
         if(id){
-            url = 'http://192.168.1.87/giochaAPI/public/api/orders?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvMTkyLjE2OC4xLjg3XC9naW9jaGFBUElcL3B1YmxpY1wvYXBpXC9hdXRoZW50aWNhdGUiLCJpYXQiOjE0NjIzNjM0NDcsImV4cCI6MTQ2MjM3MDY0NywibmJmIjoxNDYyMzYzNDQ3LCJqdGkiOiI3NzMxZjU0YWVlNTFhOTY0NjE0MDhlZmQ4MjY0YTllMyJ9.TvmPZ8UAt7rdsuZGrfARtZU6B3JTnh5rwQffysg41oM';
-            // url = 'http://localhost:8080/newsApi/public/api/edit-category';
+            url = 'http://localhost/giochaAPI/public/api/orders?token=' + localStorage.getItem('Bearer');
             method = 'PUT';
         } else {
             method = 'POST';
-            url = 'http://192.168.1.87/giochaAPI/public/api/orders?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvMTkyLjE2OC4xLjg3XC9naW9jaGFBUElcL3B1YmxpY1wvYXBpXC9hdXRoZW50aWNhdGUiLCJpYXQiOjE0NjIzNjM0NDcsImV4cCI6MTQ2MjM3MDY0NywibmJmIjoxNDYyMzYzNDQ3LCJqdGkiOiI3NzMxZjU0YWVlNTFhOTY0NjE0MDhlZmQ4MjY0YTllMyJ9.TvmPZ8UAt7rdsuZGrfARtZU6B3JTnh5rwQffysg41oM';
-            // url = 'http://localhost:8080/newsApi/public/api/add-category';
+            url = 'http://localhost/giochaAPI/public/api/orders?token=' + localStorage.getItem('Bearer');
         }
 
         if (formPanel.getForm().isValid()) {
@@ -45,10 +43,9 @@ Ext.define('TutorialApp.view.order.OrderController', {
                     url: url,
                     method: 'POST',
                     params: {
-                        id: id,
                         note: note,
                         status: '2',
-                        user_id: '2',
+                        user_id: user_id,
                         product_id: daily_transaction_product_id,
                         quantity: quantity                   
                     },
@@ -62,12 +59,12 @@ Ext.define('TutorialApp.view.order.OrderController', {
                     },
                     success: function(conn, response, options, eOpts){
                         var result = Ext.JSON.decode(conn.responseText, true);
-
+                        Ext.getCmp('listOrder').getStore().load();
                         if (!result){ // #2
                             result = {};
                             result.msg = conn.responseText;
                         }
-                        if (result.status_code == 200) { // #3
+                        if (result.code == 200) { // #3
                            var addModal = button.up('add-new-ticket');
                            addModal.hide();
                         } else {

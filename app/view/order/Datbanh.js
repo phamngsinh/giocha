@@ -1,11 +1,14 @@
 
+var states = Ext.create('TutorialApp.store.Product');
+
 Ext.define('TutorialApp.view.order.Datbanh', {
     extend: 'Ext.window.Window',
     xtype: 'add-new-ticket',
 
     requires: [
         'Ext.form.Panel',
-        'TutorialApp.view.order.OrderController'
+        'TutorialApp.view.order.OrderController',
+        'TutorialApp.store.Product'
     ],
 
     controller: 'order',
@@ -17,26 +20,26 @@ Ext.define('TutorialApp.view.order.Datbanh', {
         xtype: 'form',
         reference: 'form',
         items: [{
-            xtype: 'textfield',
+            xtype: 'combobox',
             name: 'product_id',
             fieldLabel: 'Loại Bánh',
-            msgTarget: 'under',
-            bind: '{product_id}'
+            store: states,
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id'
         },
         {
             xtype: 'textfield',
             name: 'note',
             fieldLabel: 'Note',
             allowBlank: true,
-            msgTarget: 'under',
-            bind: '{note}'
+            msgTarget: 'under'
         },
         {
             xtype: 'textfield',
             name: 'quantity',
             fieldLabel: 'Số Lượng',
-            msgTarget: 'under',
-            bind: '{quantity}'
+            msgTarget: 'under'
         },
         {
             xtype: 'hiddenfield',

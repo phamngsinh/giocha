@@ -8,6 +8,7 @@ Ext.define('TutorialApp.model.Order', {
         { name: 'daily_transaction_id', type: 'int' },
         { name: 'created_at', type: 'int' },
         { name: 'updated_at', type: 'int' },
-        { name: 'total', type: 'int' }        
-    ]    
+        { name: 'total', type: 'int' },
+        { name: 'customerName', type: 'string' }
+    ]
 });

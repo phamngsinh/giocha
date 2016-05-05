@@ -16,6 +16,7 @@ Ext.define('TutorialApp.view.product.List', {
     },
     controller: 'ProductCTL',
     columns: [
+        {text: 'Id', dataIndex: 'id', width: 60},
         {text: 'Tên', dataIndex: 'name', flex: 1},
         {text: 'Giá', dataIndex: 'price', flex: 1},
         {text: 'Mô tả', dataIndex: 'description', flex: 1},
