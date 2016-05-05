@@ -27,6 +27,15 @@ Ext.define('TutorialApp.view.product.List', {
                 text: 'Edit',
                 handler: 'onEditProductClick'
             }
+        },
+        {
+            xtype: 'widgetcolumn',
+            width: 90,
+            widget: {
+                xtype: 'button',
+                text: 'Delete',
+                handler: 'onDeleteProductClick'
+            }
         }
     ],
     dockedItems: [

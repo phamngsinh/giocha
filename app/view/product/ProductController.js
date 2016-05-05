@@ -3,15 +3,18 @@ Ext.define('TutorialApp.view.product.ProductController', {
     alias: 'controller.ProductCTL',
     requires: [      
         'TutorialApp.view.product.editProductForm'    ],
+    /**
+     *
+     * @param button
+     * @param e
+     * @param options
+     */
     addNewProductAction: function (button, e, options) {
         var _formPanel = button.up('form');
         var _token = localStorage.getItem('Bearer');
         var _currentID = localStorage.getItem('currentUser');
         var _url = 'http://localhost/giochaAPI/public/api/products?token='+ _token;
         var _product = this.lookupReference('addProductForm').getValues();
-
-
-
         var _params = {
             name: _product.name,
             description: _product.description,
@@ -27,6 +30,13 @@ Ext.define('TutorialApp.view.product.ProductController', {
                 url: _url,
                 method: 'POST',
                 params: _params,
+                /**
+                 *
+                 * @param conn
+                 * @param response
+                 * @param options
+                 * @param eOpts
+                 */
                 failure: function (conn, response, options, eOpts) {
                     Ext.Msg.show({
                         title: 'Error!',
@@ -35,18 +45,31 @@ Ext.define('TutorialApp.view.product.ProductController', {
                         buttons: Ext.Msg.OK
                     });
                 },
+                /**
+                 *
+                 * @param conn
+                 * @param response
+                 * @param options
+                 * @param eOpts
+                 */
                 success: function (conn, response, options, eOpts) {
                     var result = Ext.JSON.decode(conn.responseText, true);
-
+                    Ext.getCmp('listProduct').getStore().load();
                     if (!result) { // #2
                         result = {};
                         result.msg = conn.responseText;
                     }
-                    if (result.status_code == 200) { // #3
+                    if (result.code == 200) {
                         var addModal = button.up('addProductForm');
                         addModal.hide();
-                        //Ext.getCmp('productList').getView().refresh();
-                        //Ext.getCmp('listProduct').getStore().load();
+                        Ext.getCmp('listProduct').getStore().load();
+
+                        Ext.Msg.show({
+                            title: 'Successfully',
+                            msg: 'Product is added successfully', // #6
+                            icon: Ext.Msg.SUCCESS,
+                            buttons: Ext.Msg.OK
+                        });
                     } else {
                         Ext.Msg.show({
                             title: 'Fail!',
@@ -59,6 +82,12 @@ Ext.define('TutorialApp.view.product.ProductController', {
             });
         }
     },
+    /**
+     *
+     * @param button
+     * @param e
+     * @param options
+     */
     editProductAction: function (button, e, options) {
         var _formPanel = button.up('form');
         var _token = localStorage.getItem('Bearer');
@@ -80,6 +109,13 @@ Ext.define('TutorialApp.view.product.ProductController', {
                 url: _url,
                 method: 'PUT',
                 params: _params,
+                /**
+                 *
+                 * @param conn
+                 * @param response
+                 * @param options
+                 * @param eOpts
+                 */
                 failure: function (conn, response, options, eOpts) {
                     Ext.Msg.show({
                         title: 'Error!',
@@ -88,22 +124,39 @@ Ext.define('TutorialApp.view.product.ProductController', {
                         buttons: Ext.Msg.OK
                     });
                 },
+                /**
+                 *
+                 * @param conn
+                 * @param response
+                 * @param options
+                 * @param eOpts
+                 */
                 success: function (conn, response, options, eOpts) {
                     var result = Ext.JSON.decode(conn.responseText, true);
 
-                    if (!result) { // #2
+                    if (!result) {
                         result = {};
                         result.msg = conn.responseText;
                     }
-                    if (result.status_code == 200) { // #3
+
+                    /**
+                     * Case success
+                     */
+                    if (result.code == 200) {
+                        Ext.getCmp('listProduct').getStore().load();
                         var addModal = button.up('editProductForm');
                         addModal.hide();
-                        //Ext.getCmp('productList').getView().refresh();
-                        //Ext.getCmp('listProduct').getStore().load();
+                        Ext.Msg.show({
+                            title: 'Successfully',
+                            msg: 'Product is updated successfully', // #6
+                            icon: Ext.Msg.SUCCESS,
+                            buttons: Ext.Msg.OK
+                        });
+
                     } else {
                         Ext.Msg.show({
                             title: 'Fail!',
-                            msg: result.message, // #6
+                            msg: result.message,
                             icon: Ext.Msg.ERROR,
                             buttons: Ext.Msg.OK
                         });
@@ -112,10 +165,13 @@ Ext.define('TutorialApp.view.product.ProductController', {
             });
         }
     },
-    onEditProductClick: function (row) {
-        var view = this.getView();
-        var _data = row.getWidgetRecord();
 
+    /**
+     *
+     * @param row
+     */
+    onEditProductClick: function (row) {
+        var _data = row.getWidgetRecord();
         var editModal = Ext.create('TutorialApp.view.product.editProductForm', {
             viewModel: {
                 data: {
@@ -124,46 +180,29 @@ Ext.define('TutorialApp.view.product.ProductController', {
             }
         });
         editModal.show();
-
-        //this.dialog = view.add({
-        //    xtype: 'editProductForm',
-        //    viewModel: {
-        //        links: {
-        //            product: _data
-        //        }
-        //    },
-        //    session: true
-        //});
-        //
-        //this.dialog.show();
- 
     },
-    onEditCat: function (grid, rowIndex, colIndex) {
-        var rec = grid.getStore().getAt(rowIndex);
 
-        var editModal = Ext.create('News.view.backend.AddNewCategoryForm');
-        var form = editModal.down('form');
+    /**
+     *
+     * @param row
+     */
+    onDeleteProductClick: function (row) {
+        var _data = row.getWidgetRecord().data;
+        var _token = localStorage.getItem('Bearer');
+        var _url = 'http://localhost/giochaAPI/public/api/products/' + _data.id + '?token='+ _token;
 
-        form.loadRecord(rec);
-        editModal.show();
-
-    },
-    onDeleteCat: function (grid, rowIndex, colIndex) {
-        var rec = grid.getStore().getAt(rowIndex);
-        var categoryId = rec.get('id');
-
-        Ext.MessageBox.confirm('Delete', 'Are you sure to delete category ' + rec.get('name') + '?', function (btn) {
+        var _productId = _data.id;
+        Ext.MessageBox.confirm('Xóa sản phẩm', 'Bạn có chắc chắn xóa sản phẩm ' + _data.name + '?', function (btn) {
             if (btn === 'yes') {
                 Ext.Ajax.useDefaultXhrHeader = false;
 
                 Ext.Ajax.request({
                     cors: true,
                     useDefaultXhrHeader: false,
-                    url: 'http://news.api/api/delete-category',
-                    // url: 'http://localhost:8080/newsApi/public/api/delete-category',
-                    method: 'POST',
+                    url: _url,
+                    method: 'DELETE',
                     params: {
-                        id: categoryId
+                        id: _productId
                     },
                     failure: function (conn, response, options, eOpts) {
                         Ext.Msg.show({
@@ -176,23 +215,34 @@ Ext.define('TutorialApp.view.product.ProductController', {
                     success: function (conn, response, options, eOpts) {
                         var result = Ext.JSON.decode(conn.responseText, true);
 
+                        Ext.getCmp('listProduct').getStore().load();
+
                         if (!result) {
                             result = {};
                             result.msg = conn.responseText;
                         }
 
-                        if (result.status_code != 200) {
+                        if(result.code == 200){
+                            Ext.Msg.show({
+                                title: 'Delete product successfully',
+                                msg: result.message,
+                                icon: Ext.Msg.SUCCESS,
+                                buttons: Ext.Msg.OK
+                            });
+                            //listProduct
+                            Ext.getCmp('listProduct').getStore().load();
+                        }
+
+                        if (result.code != 200) {
                             Ext.Msg.show({
                                 title: 'Fail!',
-                                msg: result.msg,
+                                msg: result.message,
                                 icon: Ext.Msg.ERROR,
                                 buttons: Ext.Msg.OK
                             });
                         }
                     }
                 });
-
-                grid.getStore().remove(rec);
             }
         });
     }
